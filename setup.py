@@ -1,10 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='moduleofG',
+    name='g_stock',
     version='0.1.0',
     author='G--R Li',
     author_email='grlee.pku@gmail.com',
+    url='https://github.com/MichaelKim0407/tutorial-pip-package',
     description='A short description of your package',
     packages=find_packages(),
     classifiers=[
