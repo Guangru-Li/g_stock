@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='g_stock',
-    version='0.1.0',
+    version='0.1.1',
     author='G--R Li',
     author_email='grlee.pku@gmail.com',
     url='https://github.com/MichaelKim0407/tutorial-pip-package',
