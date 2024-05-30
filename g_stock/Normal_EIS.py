@@ -1,4 +1,3 @@
-def Bode(path)
 def hello():
   print("hello")
 # PROCESS:
@@ -15,7 +14,7 @@ def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=
     return Zreal,Zimag,Freq
   
 def Bode(path,plot=True):
-    Zreal,Zimag,Freq=read_data(path=Path)
+    Zreal,Zimag,Freq=read_data(path=path)
     if plot==True:
         import matplotlib.pyplot as plt
         plt.subplots(1,2)
@@ -27,16 +26,16 @@ def Bode(path,plot=True):
         plt.xscale("log")
     
     return np.abs(Z_),freq
-def Nyquist(I,V,t,plot=False,pad=0):
-    Zreal,Zimag,Freq=read_data(path=Path)
+def Nyquist(path,plot=False):
+    Zreal,Zimag,Freq=read_data(path=path)
     if plot==True:
         import matplotlib.pyplot as plt
         plt.subplots()
         plt.plot(Zreal,Zimag*-1)
     return Z_.real, Z_.imag*-1
-def Cf(I,V,t, plot=False,pad=0):
+def Cf(path, plot=False):
     import numpy as np
-    Zreal,Zimag,Freq=read_data(path=Path)
+    Zreal,Zimag,Freq=read_data(path=path)
     C = (1/(Zreal+1j*Zimag)/2/Freq/np.pi).imag
     if plot==True:
         import matplotlib.pyplot as plt
