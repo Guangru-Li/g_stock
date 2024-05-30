@@ -2,12 +2,13 @@ def hello():
   print("hello")
 # PROCESS:
 # 1. obtain monochro-whatever curve (0 V, 1 V, 1.5 V, 2 V)
-def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=False, delta=False):
+def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=False, delta=False,fmax=1e7,fmin=0):
     import gamry_parser as parser
     import numpy as np
     gp = parser.GamryParser()
     gp.load(filename=path)
     data=gp.get_curve_data()
+    select = np.logical_and(data["Freq"]<fmax,data["Freq"]>fmin) 
     Freq=data['Freq'].to_numpy()[select]
     Zreal=data["Zreal"].to_numpy()[select]
     Zimag=data["Zimag"].to_numpy()[select]
