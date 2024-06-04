@@ -2,7 +2,7 @@ def hello():
   print("hello")
 # PROCESS:
 # 1. obtain monochro-whatever curve (0 V, 1 V, 1.5 V, 2 V)
-def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=False, min_t=-1,max_t=float("inf"),delta=False):
+def read_It(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=False, min_t=-1,max_t=float("inf"),delta=False):
     import gamry_parser as parser
     import numpy as np
     path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA"
