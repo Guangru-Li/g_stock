@@ -37,3 +37,4 @@ def recon(data,freq,accu=False):
       re=scipy.integrate.cumtrapz(re)
       t=t[:-1]
   return re,t
+## direct working with files##########
