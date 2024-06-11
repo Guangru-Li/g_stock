@@ -1,10 +1,9 @@
 """
 Z_simu: define impedance simulator
 excit: define a fft voltage generator
+recon: generate It or dI-dt curve from Z, freq relationships
 
 """
-
-
 def Z_simu(omega=None):
   import numpy as np
   if omega == None:
