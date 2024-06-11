@@ -38,3 +38,30 @@ def recon(data,freq,accu=False):
       t=t[:-1]
   return re,t
 ## direct working with files##########
+def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=False, delta=False,fmax=1e7,fmin=0):
+  import gamry_parser as parser
+  import numpy as np
+  gp = parser.GamryParser()
+  gp.load(filename=path)
+  data=gp.get_curve_data()
+  select = np.logical_and(data["Freq"]<fmax,data["Freq"]>fmin) 
+  Freq=data['Freq'].to_numpy()[select]
+  Zreal=data["Zreal"].to_numpy()[select]
+  Zimag=data["Zimag"].to_numpy()[select]
+  return Zreal,Zimag,Freq
+def It_from_file(path,fmax=1e7,fmin=0):
+  Zreal,Zimag,Freq_Z = read_data(path=path, fmax=fmax,fmin=fmin)
+  Z=Zreal+1j*Zimag
+  import numpy as np
+  freq_min=np.min(freq_Z[np.where(freq_Z>0)])
+  freq_max=np.max(freq_Z)
+  freqs=np.arange(freq_min,freq_max,freq_min)
+  t_max=1/freq_min
+  t_min=1/freq_max*2
+  ### generate exciting signal################
+  V, dV_fft, freqs=excit(dt=t_min,t_max=t_max)
+  from scipy.interpolate import interp1d
+  Z_fft = interp1d(freq_Z,Z, fill_value=(0,0), bounds_error=False)(freqs)
+  dI_fft=dV_fft/Z_fft
+  I,t=recon(dI_fft,freqs,accu=True)
+  return I,t
