@@ -49,7 +49,7 @@ def read_data(path="/Users/guangruli/Desktop/data_for_paper3/CHRONOA.DTA", plot=
   Zreal=data["Zreal"].to_numpy()[select]
   Zimag=data["Zimag"].to_numpy()[select]
   return Zreal,Zimag,Freq
-def It_from_file(path,fmax=1e7,fmin=0):
+def It_from_file(path,fmax=1e7,fmin=0, plot=False):
   Zreal,Zimag,Freq_Z = read_data(path=path, fmax=fmax,fmin=fmin)
   Z=Zreal+1j*Zimag
   import numpy as np
@@ -64,4 +64,11 @@ def It_from_file(path,fmax=1e7,fmin=0):
   Z_fft = interp1d(freq_Z,Z, fill_value=(0,0), bounds_error=False)(freqs)
   dI_fft=dV_fft/Z_fft
   I,t=recon(dI_fft,freqs,accu=True)
+  if plot==True:
+    import matplotlib.pyplot as plt
+    ax=plt.sublplots(2,2)
+    ax[0,0].plot
+    ax[0,1].plot
+    ax[1,0].plot
+    ax[1,1].plot
   return I,t
