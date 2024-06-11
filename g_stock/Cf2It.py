@@ -67,8 +67,9 @@ def It_from_file(path,fmax=1e7,fmin=0, plot=False):
   if plot==True:
     import matplotlib.pyplot as plt
     ax=plt.sublplots(2,2)
-    ax[0,0].plot
-    ax[0,1].plot
-    ax[1,0].plot
-    ax[1,1].plot
+    ## Nyquest,Bode
+    ax[0,0].plot(Z.real, Z.imag)
+    ax[0,1].plot(freq,np.abs(Z))
+    ax[1,0].plot(t, dI)
+    ax[1,1].plot(t, I)
   return I,t
